@@ -1,0 +1,43 @@
+{
+  "name" : "tmp-delete-2",
+  "description" : "",
+  "role" : "arn:aws:iam::370310570296:role/big-boss-man",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-370310570296-us-east-1/scripts/exercise-job.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-370310570296-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-370310570296-us-east-1/temporary/",
+    "--enable-auto-scaling" : "true"
+  },
+  "connections" : {
+    "connections" : [ "postgres" ]
+  },
+  "maxRetries" : 1,
+  "allocatedCapacity" : 10,
+  "timeout" : 2880,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "3.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1698663349810\":{\"CatalogSource\":{\"Database\":\"exercise\",\"Name\":\"AWS Glue Data Catalog\",\"Table\":\"miraa\"}},\"node-1698663370594\":{\"PostgreSQLCatalogTarget\":{\"Database\":\"exercise\",\"Inputs\":[\"node-1698663349810\"],\"Name\":\"PostgreSQL\",\"Table\":\"postgres_public_mirai\"}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "glue-edokemwa-test2",
+    "branch" : "develop",
+    "folder" : "exercise-job"
+  }
+}
